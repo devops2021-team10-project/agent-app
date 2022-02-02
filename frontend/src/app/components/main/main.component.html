@@ -1,0 +1,94 @@
+<div class="row mt-3">
+    <div class="col-md-3"></div>
+</div>
+    <div *ngIf = isBuyer>
+        <div class="col-sm-10 split left">
+            <h2 class="form-signin-heading">List Of Products</h2>
+            <table class="table table-striped" id = "mark">
+                <thead>
+                    <tr>
+                        <th>  </th>
+                        <th>  </th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Available in stock</th>
+                        <th>  </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of allProducts; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ product.image }} </td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.inStock}}</td>
+                        <td><button type="button" class="btn btn-primary"  id="buy" (click) = "addToCart(product)"><i class="far fa-eye">Add To Cart</i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-10 split2 right">
+            <h2 class="form-signin-heading">Cart</h2>
+            <table class="table table-striped" id = "mark">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>  </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cart; index as i">
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td><button type="button" class="btn btn-primary"  id="remove" (click) = "removeFromCart(product)"><i class="far fa-eye">X</i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="totalSum > 0">
+                <h4 class="form-signin-heading">Total Sum</h4>
+                <h4 class="form-signin-heading">{{ totalSum }}</h4>
+                <td><button type="button" class="btn btn-primary"  id="checkout" (click) = "checkoutCart()"><i class="far fa-eye">Checkout</i></button></td>
+                <td><button type="button" class="btn btn-primary"  id="drop" (click) = "dropCart()"><i class="far fa-eye">Drop</i></button></td>
+            </div>
+
+            <div *ngIf = buying>
+                <h3>Buyer Info</h3>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">First Name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" id="firstName" name="firstName" [(ngModel)]="buyerInfo.firstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Last Name:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" id="lastName" name="lastName" [(ngModel)]="buyerInfo.lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Email:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="email" id="email"  name="email" [(ngModel)]="buyerInfo.email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Address</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" id="address"  name="address" [(ngModel)]="buyerInfo.address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8">
+                        <input type="button" class="btn btn-primary" value="Checkout" (click) = "buy()">
+                        <input type="button" class="btn btn-primary" value="Cancel" (click) = "cancel()">
+                        <span></span>
+                        </div>
+                    </div>     
+                </form>
+            </div>
+        </div>
+    </div>
+
+

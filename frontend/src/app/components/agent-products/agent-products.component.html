@@ -1,0 +1,92 @@
+<div class="col-md-3"></div>
+    <div class="col-sm-10 split left">
+        <h2 class="form-signin-heading">List Of Products</h2>
+        <td><button type="button" class="btn btn-primary"  id="create" (click) = "onCreate()"><i class="far fa-eye">Create New Product</i></button></td>
+        <table class="table table-striped" id = "mark">
+            <thead>
+                <tr>
+                    <th>  </th>
+                    <th>  </th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Available in stock</th>
+                    <th>  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of agent_products; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ product.image }} </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.inStock}}</td>
+                    <td><button type="button" class="btn btn-primary"  id="update" (click) = "onUpdate(product)"><i class="far fa-eye">Update Product</i></button></td>
+                    <td><button type="button" class="btn btn-primary"  id="delete" (click) = "onDelete(product.id)"><i class="far fa-eye">X</i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-9 split2 right" *ngIf="productUpdateChosen">
+        <h3>Update Product</h3>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Name:</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" id="Username" name="username" [(ngModel)]="chosenProduct.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Price:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" id="password" name="password" [(ngModel)]="chosenProduct.price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Available in Stock:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" id="confirm_password"  name="confirm_password" [(ngModel)]="chosenProduct.inStock">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-8">
+                <input type="button" class="btn btn-primary" value="Update" (click) = "updateProduct()">
+                <input type="button" class="btn btn-primary" value="Cancel" (click) = "cancel()">
+                <span></span>
+                </div>
+            </div>     
+        </form>
+    </div>
+
+    <div class="col-sm-9 split2 right" *ngIf="productCreationChosen">
+        <h3>Create New Product</h3>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Name:</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" id="Username" name="username" [(ngModel)]="createdProduct.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Price:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" id="password" name="password" [(ngModel)]="createdProduct.price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Available in Stock:</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" id="confirm_password"  name="confirm_password" [(ngModel)]="createdProduct.inStock">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-8">
+                <input type="button" class="btn btn-primary" value="Create" (click) = "createProduct()">
+                <input type="button" class="btn btn-primary" value="Cancel" (click) = "cancel()">
+                <span></span>
+                </div>
+            </div>     
+        </form>
+    </div>
+
